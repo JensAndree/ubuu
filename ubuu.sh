@@ -4,7 +4,7 @@
 set -euo pipefail
 
 PROG_SOURCE='https://github.com/JensAndree/ubuu/'
-PROG_VERSION='0.1.0'
+PROG_VERSION='0.1.1'
 PROG=${0##*/}
 INPUT="" COMP="" OUT=""
 DATETIME=0 SYMCOPY=0 VERBOSE=0 FORCE=0 PREVIEW=0 ENCRYPT=0
@@ -44,7 +44,8 @@ Options:
   -d, --datetime           Append _YYYYmmdd_HHMMSS to the file name
   -s, --symlink-copy       Store symlinks as copies of what they point to
                            (default: store the symlinks themselves)
-  -v, --verbose            Print progress while running
+  -v, --version            Print version number and exit
+  -V, --verbose            Print progress while running
   -f, --force              Overwrite the output file if it already exists
   -p, --preview            List everything that would be archived, then exit
   -h, --help               Show this help
@@ -53,9 +54,40 @@ Source code: $PROG_SOURCE
 Version: $PROG_VERSION
 
 Examples:
-  $PROG -I "/etc/nginx;\$HOME/My Documents/*" -c tgz -o /tmp/bk -d -v
+  $PROG -I "/etc/nginx;\$HOME/My Documents/*" -c tgz -o /tmp/bk -d -V
   $PROG -I "./src;./docs" -c zip -o backup -p
   $PROG -I "./secrets" -c tgz -o vault -C
+EOF
+}
+
+version() { 
+  cat <<EOF
+  $PROG (Universal BackUp Utility) version $PROG_VERSION
+
+  MIT License
+
+Copyright (c) 2026 Jens Andrée
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+Source code: $PROG_SOURCE
+
 EOF
 }
 
@@ -86,7 +118,8 @@ while (( $# )); do
     -C|--encrypt)       ENCRYPT=1; shift ;;
     -d|--datetime)      DATETIME=1; shift ;;
     -s|--symlink-copy)  SYMCOPY=1; shift ;;
-    -v|--verbose)       VERBOSE=1; shift ;;
+    -v|--version)       version; exit 0 ;;
+    -V|--verbose)       VERBOSE=1; shift ;;
     -f|--force)         FORCE=1; shift ;;
     -p|--preview)       PREVIEW=1; shift ;;
     -h|--help)          usage; exit 0 ;;
