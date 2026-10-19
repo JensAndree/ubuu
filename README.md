@@ -1,3 +1,4 @@
+```
 Usage: ubuu.sh -I "PATH[;PATH...]" -c FORMAT -o NAME [options]
 
 Ultimate BackUp Utility in bash. Very simple but fast and reliable. And of course Open Source.
@@ -32,3 +33,4 @@ Examples:
   ubuu.sh -I "/etc/nginx;$HOME/My Documents/*" -c tgz -o /tmp/bk -d -v
   ubuu.sh -I "./src;./docs" -c zip -o backup -p
   ubuu.sh -I "./secrets" -c tgz -o vault -C
+```
