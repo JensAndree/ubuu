@@ -21,16 +21,17 @@ Options:
   -d, --datetime           Append _YYYYmmdd_HHMMSS to the file name
   -s, --symlink-copy       Store symlinks as copies of what they point to
                            (default: store the symlinks themselves)
-  -v, --verbose            Print progress while running
+  -v, --version            Print version number and exit
+  -V, --verbose            Print progress while running
   -f, --force              Overwrite the output file if it already exists
   -p, --preview            List everything that would be archived, then exit
   -h, --help               Show this help
 
 Source code: https://github.com/JensAndree/ubuu/
-Version: 0.1.0
+Version: 0.1.1
 
 Examples:
-  ubuu.sh -I "/etc/nginx;$HOME/My Documents/*" -c tgz -o /tmp/bk -d -v
+  ubuu.sh -I "/etc/nginx;$HOME/My Documents/*" -c tgz -o /tmp/bk -d -V
   ubuu.sh -I "./src;./docs" -c zip -o backup -p
   ubuu.sh -I "./secrets" -c tgz -o vault -C
 ```
